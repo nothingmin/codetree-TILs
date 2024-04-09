@@ -1,6 +1,5 @@
 l, q = map(int, input().split())
 
-table = [{} for _ in range(l)]
 customers = {}
 sushis = {}
 prints = []
