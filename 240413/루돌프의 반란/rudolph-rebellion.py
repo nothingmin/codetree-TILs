@@ -148,6 +148,8 @@ def is_stunned(santa_idx, turn):
 
 for turn in range(m):
     move_deer(turn)
+    if sort_santa_by_distance(deer, santas)[0][1] == 999:
+        break
     for santa in santas:
         move_santa(santa, turn)
 
@@ -155,5 +157,7 @@ for turn in range(m):
         if is_out(santa):
             continue
         scores[santa[0]] += 1
+    if sort_santa_by_distance(deer, santas)[0][1] == 999:
+        break
 for i in range(1,len(scores)):
     print(scores[i],end=" ")
