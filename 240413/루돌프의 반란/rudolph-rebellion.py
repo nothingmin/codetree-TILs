@@ -126,11 +126,11 @@ def move_santa(santa, turn):
     ex, ey, dx, dy = move_to_deer(deer, santa)
     if not is_moved(dx, dy):
         return
+    maps[santa[1]][santa[2]] = -1
     if maps[ex][ey] == DEER:
         santa_crashed([santa[0], ex, ey], -dx, -dy, turn, d)
     else:
         set_santa_pos(ex, ey, santa)
-    maps[santa[1]][santa[2]] = -1
 
 
 def set_santa_pos(ex, ey, santa):
