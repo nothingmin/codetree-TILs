@@ -1,5 +1,3 @@
-import copy
-
 n = int(input())
 maps = []
 
@@ -16,17 +14,21 @@ def explode(arr,x,y):
             ey = i*dy
             if not(0<=x+ex<n and 0<=y+ey<n):
                 continue
-            arr[x+ex][y+ey] = 0 
+            arr[x+ex][y+ey] = 0
     return arr
 
 def fall(arr):
-    for i in range(n):
-        if i == n-1:
-            break
+    for i in reversed(range(n)):
         for j in range(n):
-            if arr[i+1][j] == 0:
-                arr[i+1][j] = arr[i][j]
-                arr[i][j] = 0
+            arr[i][j]
+            tmp = i
+            while tmp+1 <n:
+                if arr[tmp+1][j] == 0:
+                    arr[tmp+1][j]= arr[tmp][j]
+                    arr[tmp][j] = 0
+                    tmp+=1
+                else:
+                    break
     return arr
 
 
@@ -46,6 +48,6 @@ def count(arr):
 result = 0
 for i in range(n):
     for j in range(n):
-        arr = copy.deepcopy(maps)
+        arr = [row[:] for row in maps]
         result = max(result,count(fall(explode(arr,i,j))))
 print(result)
