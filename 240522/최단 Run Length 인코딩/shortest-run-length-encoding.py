@@ -1,22 +1,30 @@
+from collections import deque
 A = input()
-first = A[0]
-i= len(A)-1
+x = deque()
+for a in A:
+    x.append(a)
+first = x.popleft()
+count = 1
+while x[-1] == first:
+    x.pop()
+    count+=1
+while x[0] == first:
+    x.popleft()
+    count+=1
+result = 0
+if count >= 10:
+    result+=3
+else:
+    result+=2
 
-while A[i] == first:
-    i-=1
-    if i == 0:
-        break
-j=1
-while A[j] == first:
-    j+=1
-    if j == len(A)-1:
-        break
-result = 4
-if i>j:
-    comp = A[j]
-    while i>j:
-        j+=1
-        if comp != A[j]:
-            comp = A[j]
+if len(x)>0:
+    last = ''
+    while len(x)!=0:
+        node = x.pop()
+        if last == node:
+            pass
+        else:
+            last = node
             result+=2
+
 print(result)
