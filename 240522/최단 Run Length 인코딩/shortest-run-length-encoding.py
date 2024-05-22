@@ -5,10 +5,10 @@ for a in A:
     x.append(a)
 first = x.popleft()
 count = 1
-while x[-1] == first:
+while x[-1] == first and x:
     x.pop()
     count+=1
-while x[0] == first:
+while x[0] == first and x:
     x.popleft()
     count+=1
 result = 0
