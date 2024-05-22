@@ -1,3 +1,5 @@
+import copy
+
 n = int(input())
 maps = []
 
@@ -44,5 +46,6 @@ def count(arr):
 result = 0
 for i in range(n):
     for j in range(n):
-        result = max(result,count(fall(explode(maps,i,j))))
+        arr = copy.deepcopy(maps)
+        result = max(result,count(fall(explode(arr,i,j))))
 print(result)
