@@ -1,16 +1,16 @@
 n = int(input())
+dp = [-1 for _ in range(n+1)]
 
-count = 0
 
 def recur(current):
-    global count 
     if current> n:
-        return
+        return 0
+    if dp[current] != -1:
+        return dp[current]    
     if current == n:
-        count+=1
-        return
-    recur(current+2)
-    recur(current+3)
+        return 1
+    dp[current] = recur(current+2) + recur(current+3)
 
+    return dp[current]
 recur(0)
-print(count)
+print(dp[n])
