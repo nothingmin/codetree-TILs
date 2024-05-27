@@ -9,7 +9,7 @@ def recur(current):
         return 0
     if dp[current] != -1:
         return dp[current]    
-    dp[current] = recur(current-2) + recur(current-3)
+    dp[current] = (recur(current-2) + recur(current-3))%10007
     return dp[current]
 recur(n)
 print(dp[n])
