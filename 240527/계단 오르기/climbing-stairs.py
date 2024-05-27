@@ -1,5 +1,5 @@
 n = int(input())
-dp = [-1 for _ in range(n+1)]
+dp = [-1 for _ in range(1001)]
 dp[2] = 1
 dp[3] = 1
 dp[1] = 0
