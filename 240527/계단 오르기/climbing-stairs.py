@@ -2,7 +2,8 @@ n = int(input())
 dp = [-1 for _ in range(n+1)]
 dp[2] = 1
 dp[3] = 1
-
+dp[1] = 0
+dp[0] = 0
 def recur(current):
     if not(0 <= current <= n):
         return 0
