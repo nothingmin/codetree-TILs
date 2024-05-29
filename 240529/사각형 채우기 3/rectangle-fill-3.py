@@ -10,5 +10,6 @@ for i in range(4,n+1):
     tmp = i-3
     while tmp>0:
         dp[i] += dp[tmp]*2
+        tmp-=1
     dp[i] = dp[i]%1000000007
 print(dp[n])
