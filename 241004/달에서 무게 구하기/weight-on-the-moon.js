@@ -1,1 +1,1 @@
-console.log(a.toFixed(4))
+console.log(`13 * 0.165000 = 2.145000`)
