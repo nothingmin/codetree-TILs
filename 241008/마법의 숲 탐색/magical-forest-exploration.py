@@ -1,3 +1,8 @@
+import sys
+
+
+sys.stdin = open("input.txt", "r")
+
 from collections import deque
 def solve():
     # 0,1,2 행에 있으면 map_out
@@ -109,15 +114,13 @@ def solve():
                     break
                 if visited[tmpx][tmpy] == 1:
                     continue
-                if maps[ex][ey] == 2 and maps[tmpx][tmpy] == 1:
-                    dq.append((tmpx, tmpy))
-                elif maps[tmpx][tmpy] == 3:
-                    dq.append((tmpx, tmpy))
+                if maps[ex][ey] == 1:
+                    if maps[tmpx][tmpy] == 3:
+                        dq.append((tmpx,tmpy))
+                elif maps[ex][ey] == 2:
+                    dq.append((tmpx,tmpy))
                 elif maps[ex][ey] == 3:
-                    dq.append((tmpx, tmpy))
-                else:
-                    continue
-
+                    dq.append((tmpx,tmpy))
         return result - 2
 
     R, C, K = list(map(int, input().split()))
