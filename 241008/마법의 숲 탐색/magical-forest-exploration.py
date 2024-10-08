@@ -1,8 +1,3 @@
-import sys
-
-
-sys.stdin = open("input.txt", "r")
-
 from collections import deque
 def solve():
     # 0,1,2 행에 있으면 map_out
