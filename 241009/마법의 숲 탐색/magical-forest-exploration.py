@@ -3,7 +3,6 @@ def solve():
     # 0,1,2 행에 있으면 map_out
 
     def check_map_out(maps):
-
         for i in range(3):
             tmp = max(maps[i])
             if tmp != 0:
@@ -81,7 +80,6 @@ def solve():
                 ey = ey + 1
                 door = (door + 1) % 4
             direction = can_move(maps, ex, ey)
-        clear_golem(maps, x, y)
         mark_golem(maps, ex, ey)
         if door == 0:
             maps[ex - 1][ey] = 2
@@ -104,6 +102,8 @@ def solve():
             ex, ey = dq.popleft()
             visited[ex][ey] = 1
             result = max(ex, result)
+            if result == R+2:
+                break
             for dx, dy in [[-1, 0], [0, 1], [1, 0], [0, -1]]:
                 tmpx = ex + dx
                 tmpy = ey + dy
