@@ -5,7 +5,6 @@ n, m = nodes[1], nodes[2]
 graph = [[] for _ in range(n)]
 costs = [[999 for _ in range(n)] for _ in range(n)]
 
-
 for i in range(3, 3 + 3 * m, 3):
     u, v, w = nodes[i], nodes[i + 1], nodes[i + 2]
     if u == v:
@@ -44,7 +43,7 @@ def calc_value(start, id, rev, dest):
     if cost == 1e6:
         return [cost, id, dest]
     else:
-        return [-rev+cost,id,dest]
+        return [-rev + cost, id, dest]
 
 
 for _ in range(q - 1):
@@ -53,7 +52,7 @@ for _ in range(q - 1):
         ids[command[1]] = command[1:]
         heappush(values, calc_value(start, command[1], command[2], command[3]))
     elif command[0] == 300:
-        ids.pop(command[1],None)
+        ids.pop(command[1], None)
     elif command[0] == 400:
         if len(values) == 0:
             print(-1)
@@ -63,20 +62,17 @@ for _ in range(q - 1):
             value, id, dest = heappop(values)
         if id not in ids.keys():
             print(-1)
-        elif value >0 :
+        elif value > 0:
             print(-1)
             heappush(values, [value, id, dest])
         else:
             print(id)
-            ids.pop(id,None)
+            ids.pop(id, None)
     elif command[0] == 500:
         start = command[1]
         hq = []
-        while values:
-            value, id, dest = heappop(values)
-            if id not in ids.keys():
-                continue
-            heappush(hq, calc_value(start, ids[id][0], ids[id][1], ids[id][2]))
+        for value in ids.values():
+            heappush(hq, calc_value(start, value[0], value[1], value[2]))
         values = hq
     else:
         raise Error('wrong command')
