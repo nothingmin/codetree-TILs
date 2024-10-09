@@ -57,7 +57,7 @@ for _ in range(q - 1):
             heappush(values, [value, id, dest])
         else:
             print(id)
-            del ids[id]
+            ids.pop(id,None)
     elif command[0] == 500:
         start = command[1]
         hq = []
