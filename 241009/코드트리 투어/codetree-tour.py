@@ -17,29 +17,26 @@ for i in range(n):
             graph[i].append([costs[i][j], j])
 from heapq import heappop, heappush
 
-distances = []
-for i in range(n):
-    distance = [1e6] * n
-    distance[i] = 0
-    hq = []
-    heappush(hq, [0, i])
+distance = [1e6] * n
+distance[0] = 0
+hq = []
+heappush(hq, [0, 0])
 
-    while hq:
-        dist, node = heappop(hq)
-        if distance[node] < dist:
-            continue
-        for cost, nxt in graph[node]:
-            if distance[nxt] > distance[node] + cost:
-                distance[nxt] = distance[node] + cost
-                heappush(hq, [distance[nxt], nxt])
-    distances.append(distance)
+while hq:
+    dist, node = heappop(hq)
+    if distance[node] < dist:
+        continue
+    for cost, nxt in graph[node]:
+        if distance[nxt] > distance[node] + cost:
+            distance[nxt] = distance[node] + cost
+            heappush(hq, [distance[nxt], nxt])
 ids = {}
 values = []
 start = 0
 
 
 def calc_value(start, id, rev, dest):
-    cost = distances[start][dest]
+    cost = distance[dest]
     if cost == 1e6:
         return [cost, id, dest]
     else:
@@ -70,6 +67,19 @@ for _ in range(q - 1):
             ids.pop(id, None)
     elif command[0] == 500:
         start = command[1]
+        distance = [1e6] * n
+        distance[start] = 0
+        hq = []
+        heappush(hq, [0, start])
+
+        while hq:
+            dist, node = heappop(hq)
+            if distance[node] < dist:
+                continue
+            for cost, nxt in graph[node]:
+                if distance[nxt] > distance[node] + cost:
+                    distance[nxt] = distance[node] + cost
+                    heappush(hq, [distance[nxt], nxt])
         hq = []
         for value in ids.values():
             heappush(hq, calc_value(start, value[0], value[1], value[2]))
