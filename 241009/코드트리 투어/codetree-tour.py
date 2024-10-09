@@ -4,6 +4,8 @@ nodes = list(map(int, input().split()))
 n, m = nodes[1], nodes[2]
 graph = [[] for _ in range(n)]
 costs = [[999 for _ in range(n)] for _ in range(n)]
+
+
 for i in range(3, 3 + 3 * m, 3):
     u, v, w = nodes[i], nodes[i + 1], nodes[i + 2]
     if u == v:
@@ -14,29 +16,31 @@ for i in range(n):
     for j in range(n):
         if costs[i][j] != 999:
             graph[i].append([costs[i][j], j])
-ids = {}
-values = []
-start = 0
 from heapq import heappop, heappush
 
-
-def calc_value(start, id, rev, dest):
-    distances = [1e6] * n
-    distances[start] = 0
+distances = []
+for i in range(n):
+    distance = [1e6] * n
+    distance[i] = 0
     hq = []
-    heappush(hq, [0, start])
-    visited = [False]*n
-    visited[start]= True
+    heappush(hq, [0, i])
 
     while hq:
         dist, node = heappop(hq)
-        if distances[node] < dist:
+        if distance[node] < dist:
             continue
         for cost, nxt in graph[node]:
-            if distances[nxt] > distances[node] + cost:
-                distances[nxt] = distances[node] + cost
-                heappush(hq, [distances[nxt], nxt])
-    cost = distances[dest]
+            if distance[nxt] > distance[node] + cost:
+                distance[nxt] = distance[node] + cost
+                heappush(hq, [distance[nxt], nxt])
+    distances.append(distance)
+ids = {}
+values = []
+start = 0
+
+
+def calc_value(start, id, rev, dest):
+    cost = distances[start][dest]
     if cost == 1e6:
         return [cost, id, dest]
     else:
