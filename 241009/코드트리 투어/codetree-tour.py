@@ -25,11 +25,15 @@ def calc_value(start, id, rev, dest):
     distances[start] = 0
     hq = []
     heappush(hq, [0, start])
+    visited = [False]*n
+    visited[start]= True
     while hq:
         dist, node = heappop(hq)
         for cost, nxt in graph[node]:
             if distances[nxt] > distances[node] + cost:
                 distances[nxt] = distances[node] + cost
+
+                visited[nxt] = True
                 heappush(hq, [distances[nxt], nxt])
     cost = distances[dest]
     if cost == 1e6:
