@@ -46,13 +46,15 @@ for _ in range(q - 1):
     elif command[0] == 300:
         ids.pop(command[1],None)
     elif command[0] == 400:
-        if len(values) ==0:
+        if len(values) == 0:
             print(-1)
             continue
         value, id, dest = heappop(values)
         while id not in ids.keys() and len(values) != 0:
             value, id, dest = heappop(values)
-        if value == 1e6 or value >0:
+        if id not in ids.keys():
+            print(-1)
+        elif value == 1e6 or value >0 :
             print(-1)
             heappush(values, [value, id, dest])
         else:
