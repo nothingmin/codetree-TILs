@@ -50,7 +50,7 @@ for _ in range(q - 1):
             print(-1)
             continue
         value, id, dest = heappop(values)
-        while id not in ids.keys():
+        while id not in ids.keys() and len(values) != 0:
             value, id, dest = heappop(values)
         if value == 1e6 or value >0:
             print(-1)
