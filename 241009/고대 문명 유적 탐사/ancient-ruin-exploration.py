@@ -104,4 +104,4 @@ for _ in range(k):
         sumi += value
     result += sumi
     maps= new_map
-    print(result)
+    print(result, end=" ")
