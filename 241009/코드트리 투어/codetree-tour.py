@@ -30,6 +30,8 @@ def calc_value(start, id, rev, dest):
     while hq:
         dist, node = heappop(hq)
         for cost, nxt in graph[node]:
+            if visited[nxt]:
+                continue
             if distances[nxt] > distances[node] + cost:
                 distances[nxt] = distances[node] + cost
 
