@@ -1,3 +1,11 @@
+import sys
+from webbrowser import Error
+
+sys.stdin = open("input.txt", "r")
+
+from collections import deque
+
+
 class Node:
     def __init__(self):
         self.parent = -1
@@ -9,7 +17,7 @@ class Heap:
     def __init__(self, nodes, auth):
         self.nodes = nodes
         self.auth = auth[:]
-        self.alarm = [True] * (100000)
+        self.alarm = [True] * (100005)
 
 
     def swap(self, a, b):
