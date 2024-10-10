@@ -94,12 +94,18 @@ def solve():
                 for j in range(c, c + w):
                     if chess[i][j] == 1:
                         health[idx] -= 1
+            if health[idx] <= 0:
+                for i in range(r, r + h):
+                    for j in range(c, c + w):
+                        maps[i][j] = -1
 
     total_damage = 0
 
     for _ in range(q):
         x, d = list(map(int, input().split()))
         x = x - 1
+        if health[x] <= 0:
+            continue
         new_map = []
         for line in maps:
             new_map.append(line[:])
