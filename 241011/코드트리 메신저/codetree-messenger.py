@@ -1,11 +1,3 @@
-import sys
-from webbrowser import Error
-
-sys.stdin = open("input.txt", "r")
-
-from collections import deque
-
-
 class Node:
     def __init__(self):
         self.parent = -1
