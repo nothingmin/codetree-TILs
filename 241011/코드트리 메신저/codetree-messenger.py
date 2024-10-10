@@ -41,8 +41,11 @@ class Heap:
 
     def show(self, a):
         result = []
-        self.recur(0,a,result)
-        print(len(result)-1)
+        if self.nodes[a].left != -1:
+            self.recur(1,self.nodes[a].left,result)
+        if self.nodes[a].right != -1:
+            self.recur(1,self.nodes[a].right,result)
+        print(len(set(result)))
 
     def recur(self, depth, num, result):
         if self.alarm[num] is False:
