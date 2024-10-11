@@ -177,6 +177,8 @@ def santa_crashed(idx, dx, dy):
 
 for _ in range(m):
     idx = get_near_santa_idx()
+    if idx == -1:
+        continue
     dx, dy = move_to_santa(idx)
     if deer_crash(dx, dy):
         deer_crashed(idx, dx, dy)
@@ -191,6 +193,8 @@ for _ in range(m):
             continue
         if santa_crash(i, da, db) is True:
             santa_crashed(i, da, db)
+
+
     for i in range(santa_length):
         if is_out[i]:
             continue
