@@ -27,6 +27,7 @@ def get_weakest():
             maxis = [[i, j]]
         elif attacked[i][j] == maxi:
             maxis.append([i, j])
+
     sumi = -1
     sumis = []
     for i, j in maxis:
@@ -67,7 +68,7 @@ def get_strongest():
             minis.append([i, j])
     sumi = 1e9
     sumis = []
-    for i, j in maxis:
+    for i, j in minis:
         if i + j < sumi:
             sumi = i + j
             sumis = [[i, j]]
@@ -167,5 +168,6 @@ for l in range(k):
             if flag is True:
                 continue
             maps[i][j] += 1
+
 q,w = get_strongest()
 print(maps[q][w])
