@@ -173,8 +173,6 @@ for l in range(k):
             if flag is True:
                 continue
             maps[i][j] += 1
-    for line in maps:
-        print(line)
-    print(" ")
+
 q,w = get_strongest()
 print(maps[q][w])
