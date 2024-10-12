@@ -77,7 +77,8 @@ def get_strongest():
 
     def sort_by_column(a):
         return a[1]
-
+    if len(sumis)==0:
+        return [-1,-1]
     sumis.sort(key=sort_by_column)
     return sumis[0]
 
@@ -137,9 +138,13 @@ def cannon(x, y, a, b):
 
 for l in range(k):
     x, y = get_weakest()
-    if x == -1 and y == -1 or maps[x][y] == 0:
+    if (x == -1 and y == -1) or maps[x][y] == 0:
         continue
     a, b = get_strongest()
+    if a == -1 and b == -1 or maps[x][y] == 0:
+        continue
+    if x== a and b==y:
+        continue
     maps[x][y] += n + m
     attacked[x][y] = l+1
     route = lazor(x, y, a, b)
@@ -168,6 +173,8 @@ for l in range(k):
             if flag is True:
                 continue
             maps[i][j] += 1
-
+    for line in maps:
+        print(line)
+    print(" ")
 q,w = get_strongest()
 print(maps[q][w])
